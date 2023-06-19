@@ -1,13 +1,18 @@
 function animateDuck(context, canvas, backgroundImage, spriteSheet) {
   const totalFrames = 4;
+  //Tried making the bottom 5 properties bigger with adding math to it, didn't work
+  //is it the duck width thats the problem or the rate of which the frames move that's the problem?
+  //either way i can't figure it out
   const scale = 3;
   const duckWidth = spriteSheet.width / totalFrames;
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
-  //^ NONE OF THIS WORKS TO MAKE THE FRAME BIGGER!!! IDK WHAT TO DO
-  const duckSpeed = 18;
-  const animationSpeed = 200;
+  const duckSpeed = 10;
+  //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
+  const frameRate = 10;
+  const interval = 1000 / frameRate;
+  //const animationSpeed = 200;
 
   let ducks = []; // store multiple ducks
   let currentFrame = 0;
@@ -34,11 +39,11 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
         spriteSheet,
         frameX,
         frameY,
-        frameWidth, // CANT GET FRAME BIGGER WITH THIS ONE
+        frameWidth,
         frameHeight,
         duck.x,
         duck.y,
-        frameWidth * scale, // THESE DONT WORK FOR MAKING THE FRAME BIGGER EITHER
+        frameWidth * scale,
         frameHeight * scale
       );
 
@@ -75,11 +80,11 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
     });
 
     // Randomly create a new duck at a random interval
-    if (Math.random() < 0.15) { 
+    if (Math.random() < 0.05) {
       createDuck();
     }
-
-    setTimeout(animateDuck, animationSpeed);
+    //setTimeout(animateDuck, animationSpeed);
+    setTimeout(animateDuck, interval);
   }
 
   createDuck();
