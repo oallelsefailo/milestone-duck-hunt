@@ -4,15 +4,15 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
   //is it the duck width thats the problem or the rate of which the frames move that's the problem?
   //either way i can't figure it out
   const scale = 3;
-  const duckWidth = spriteSheet.width / totalFrames;
+  const duckWidth = (spriteSheet.width / totalFrames) * 4;
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
-  const duckSpeed = 10;
+  const duckSpeed = 9;
   //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
-  const frameRate = 10;
-  const interval = 1000 / frameRate;
-  //const animationSpeed = 200;
+  // const frameRate = 5;
+  // const interval = 100 / frameRate;
+  const animationSpeed = 15;
 
   let ducks = []; // store multiple ducks
   let currentFrame = 0;
@@ -58,7 +58,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
 
     currentFrame = (currentFrame + 1) % (totalFrames * totalFrames);
 
-    // Click even to remove duck if clicked on
+    // Click event to remove duck if clicked on
     canvas.addEventListener("click", function (event) {
       const mouseX = event.clientX - canvas.offsetLeft;
       const mouseY = event.clientY - canvas.offsetTop;
@@ -84,7 +84,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
       createDuck();
     }
     //setTimeout(animateDuck, animationSpeed);
-    setTimeout(animateDuck, interval);
+    setTimeout(animateDuck, animationSpeed);
   }
 
   createDuck();
