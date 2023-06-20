@@ -8,7 +8,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
-  const duckSpeed = 9;
+  const duckSpeed = 3;
   //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
   // const frameRate = 5;
   // const interval = 100 / frameRate;
@@ -72,6 +72,8 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
           mouseY >= duck.y &&
           mouseY <= duck.y + frameHeight * scale
         ) {
+          const audio = new Audio("assets/gun_fire.wav");
+          audio.play();
           // Duck clicked, remove it from the array
           ducks.splice(i, 1);
           i--;
@@ -80,7 +82,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
     });
 
     // Randomly create a new duck at a random interval
-    if (Math.random() < 0.05) {
+    if (Math.random() < 0.01) {
       createDuck();
     }
     //setTimeout(animateDuck, animationSpeed);

@@ -92,5 +92,5 @@ h1 {
 /* CURSOR ASSET FOR CANVAS */
 
 .canvas-cursor {
-  cursor: url(assets/crosshair.png), auto;
+  cursor: url(assets/crosshair.png) 25 25, auto;
 }
