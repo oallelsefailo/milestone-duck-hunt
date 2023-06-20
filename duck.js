@@ -4,7 +4,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
   //is it the duck width thats the problem or the rate of which the frames move that's the problem?
   //either way i can't figure it out
   const scale = 3;
-  const duckWidth = (spriteSheet.width / totalFrames) * 4;
+  const duckWidth = spriteSheet.width;
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
@@ -32,7 +32,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
     for (let i = 0; i < ducks.length; i++) {
       const duck = ducks[i];
 
-      const frameX = (currentFrame % totalFrames) * frameWidth;
+      const frameX = 0;
       const frameY = Math.floor(currentFrame / totalFrames) * frameHeight;
 
       context.drawImage(
@@ -84,7 +84,7 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
       createDuck();
     }
     //setTimeout(animateDuck, animationSpeed);
-    setTimeout(animateDuck, animationSpeed);
+    requestAnimationFrame(animateDuck, animationSpeed);
   }
 
   createDuck();
