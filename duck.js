@@ -1,17 +1,11 @@
 function animateDuck(context, canvas, backgroundImage, spriteSheet) {
   const totalFrames = 4;
-  //Tried making the bottom 5 properties bigger with adding math to it, didn't work
-  //is it the duck width thats the problem or the rate of which the frames move that's the problem?
-  //either way i can't figure it out
   const scale = 3;
   const duckWidth = spriteSheet.width;
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
   const duckSpeed = 3;
-  //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
-  // const frameRate = 5;
-  // const interval = 100 / frameRate;
   const animationSpeed = 15;
 
   let ducks = []; // store multiple ducks
@@ -85,7 +79,6 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
     if (Math.random() < 0.01) {
       createDuck();
     }
-    //setTimeout(animateDuck, animationSpeed);
     requestAnimationFrame(animateDuck, animationSpeed);
   }
 
