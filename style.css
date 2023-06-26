@@ -94,3 +94,8 @@ h1 {
 .canvas-cursor {
   cursor: url(assets/crosshair.png) 25 25, auto;
 }
+
+.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -1,32 +1,37 @@
-function animateDuck(context, canvas, backgroundImage, spriteSheet) {
+let ducks = []; // store multiple ducks
+let isBackgroundLoaded = false;
+let score = 0; // initialize score to 0
+let isGameOver = false; // track game over state
+
+function animateDuck(
+  context,
+  canvas,
+  backgroundImage,
+  spriteSheet,
+  timeRemaining
+) {
   const totalFrames = 4;
-  //Tried making the bottom 5 properties bigger with adding math to it, didn't work
-  //is it the duck width thats the problem or the rate of which the frames move that's the problem?
-  //either way i can't figure it out
   const scale = 3;
   const duckWidth = spriteSheet.width;
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
   const duckSpeed = 3;
-  //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
-  // const frameRate = 5;
-  // const interval = 100 / frameRate;
-  const animationSpeed = 15;
 
-  let ducks = []; // store multiple ducks
   let currentFrame = 0;
+  let gameInterval; // Interval ID for the game loop
 
   function createDuck() {
     const duck = {
       x: canvas.width,
-      y: Math.random() * (canvas.height * 0.5 - frameHeight * scale), // should randomize the ducks position, but only to the top 50% of the canvas
+      y: Math.random() * (canvas.height * 0.5 - frameHeight * scale),
     };
     ducks.push(duck);
   }
 
-  function animateDuck() {
+  function animate() {
     context.clearRect(0, 0, canvas.width, canvas.height);
+
     context.drawImage(backgroundImage, 0, 0);
 
     for (let i = 0; i < ducks.length; i++) {
@@ -74,21 +79,78 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
         ) {
           const audio = new Audio("assets/gun_fire.wav");
           audio.play();
-          // Duck clicked, remove it from the array
+          // Duck clicked, remove it from the array and increment the score
           ducks.splice(i, 1);
           i--;
+          score++;
         }
       }
     });
 
-    // Randomly create a new duck at a random interval
-    if (Math.random() < 0.01) {
-      createDuck();
+    // Display the score during gameplay
+    context.font = "400 24px 'Agdosimo', sans-serif";
+    context.textAlign = "center";
+    context.fillText("Score: " + score, canvas.width / 2, 30);
+
+    if (timeRemaining > 0 || ducks.length > 0) {
+      requestAnimationFrame(animate);
+    } else {
+      gameOver(); // Call the gameOver() function when the game ends
     }
-    //setTimeout(animateDuck, animationSpeed);
-    requestAnimationFrame(animateDuck, animationSpeed);
   }
 
-  createDuck();
-  animateDuck();
+  function startGame() {
+    // Reset the score to 0 when starting the game
+    score = 0;
+    isGameOver = false;
+
+    gameInterval = setInterval(function () {
+      createDuck();
+    }, 750); // This is controlling duck spawn rate
+
+    animate();
+
+    setInterval(function () {
+      timeRemaining--;
+      if (timeRemaining <= 0) {
+        clearInterval(gameInterval);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if (isBackgroundLoaded) {
+          context.drawImage(backgroundImage, 0, 0);
+        }
+        gameOver(); // Call the gameOver() function when the timer reaches 0
+      }
+    }, 1000);
+  }
+
+  function gameOver() {
+    isGameOver = true;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(backgroundImage, 0, 0);
+
+    // Display the score and "GAME OVER" text
+    context.font = "400 24px 'Agdosimo', sans-serif";
+    context.textAlign = "center";
+    context.fillText("Score: " + score, canvas.width / 2, 30); // Math divides the canvas and sets it from the top
+
+    context.font = "bold 48px 'Agdosimo', sans-serif"; 
+    context.shadowColor = "rgba(0, 0, 0, 0.5)";
+    context.shadowOffsetX = 2;
+    context.shadowOffsetY = 2;
+    context.shadowBlur = 4;
+    context.fillStyle = "red"; // Set the text color to red
+    context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2); // Math same as Score
+
+    // Reset the font and shadow settings for the score display
+    context.fillStyle = "black";
+    context.font = "400 24px 'Agdosimo', sans-serif";
+    context.shadowColor = "transparent";
+  }
+
+  backgroundImage.addEventListener("load", function () {
+    isBackgroundLoaded = true;
+  });
+
+  startGame();
 }
