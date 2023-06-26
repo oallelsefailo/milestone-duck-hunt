@@ -17,6 +17,10 @@ function animateDuck(
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
   const duckSpeed = 3;
+  //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
+  // const frameRate = 5;
+  // const interval = 100 / frameRate;
+  const animationSpeed = 15;
 
   let currentFrame = 0;
   let gameInterval; // Interval ID for the game loop
@@ -106,21 +110,9 @@ function animateDuck(
 
     gameInterval = setInterval(function () {
       createDuck();
-    }, 750); // This is controlling duck spawn rate
-
-    animate();
-
-    setInterval(function () {
-      timeRemaining--;
-      if (timeRemaining <= 0) {
-        clearInterval(gameInterval);
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        if (isBackgroundLoaded) {
-          context.drawImage(backgroundImage, 0, 0);
-        }
-        gameOver(); // Call the gameOver() function when the timer reaches 0
-      }
-    }, 1000);
+    }
+    //setTimeout(animateDuck, animationSpeed);
+    requestAnimationFrame(animateDuck, animationSpeed);
   }
 
   function gameOver() {
