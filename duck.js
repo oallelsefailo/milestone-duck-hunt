@@ -17,10 +17,6 @@ function animateDuck(
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
   const duckSpeed = 3;
-  //adding in a framerate and interval variable to call for the setTimeout function, thinking this might change something but no go
-  // const frameRate = 5;
-  // const interval = 100 / frameRate;
-  const animationSpeed = 15;
 
   let currentFrame = 0;
   let gameInterval; // Interval ID for the game loop
@@ -107,17 +103,29 @@ function animateDuck(
     // Reset the score to 0 when starting the game
     score = 0;
     isGameOver = false;
-
+    // Call the createDuck function to create ducks
     gameInterval = setInterval(function () {
       createDuck();
-    }
-    //setTimeout(animateDuck, animationSpeed);
-    requestAnimationFrame(animateDuck, animationSpeed);
+    }, 725); // This is controlling duck spawn rate
+  
+    animate();
+    // Decrement time by 1 to check if the game is over
+    setInterval(function () {
+      timeRemaining--;
+      if (timeRemaining <= 0) {
+        clearInterval(gameInterval);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if (isBackgroundLoaded) {
+          context.drawImage(backgroundImage, 0, 0);
+        }
+        gameOver(); // Call the gameOver function when the timer reaches 0
+      }
+    }, 1000);
   }
 
   function gameOver() {
     isGameOver = true;
-
+    // Clears the canvas to make the duck function stop
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(backgroundImage, 0, 0);
 
@@ -126,7 +134,7 @@ function animateDuck(
     context.textAlign = "center";
     context.fillText("Score: " + score, canvas.width / 2, 30); // Math divides the canvas and sets it from the top
 
-    context.font = "bold 48px 'Agdosimo', sans-serif"; 
+    context.font = "bold 48px 'Agdosimo', sans-serif";
     context.shadowColor = "rgba(0, 0, 0, 0.5)";
     context.shadowOffsetX = 2;
     context.shadowOffsetY = 2;
@@ -139,7 +147,7 @@ function animateDuck(
     context.font = "400 24px 'Agdosimo', sans-serif";
     context.shadowColor = "transparent";
   }
-
+  // bring back the background after the canvas clears
   backgroundImage.addEventListener("load", function () {
     isBackgroundLoaded = true;
   });
