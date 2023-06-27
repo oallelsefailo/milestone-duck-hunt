@@ -1,6 +1,6 @@
 # Duck Hunt Game
 
-This project is a milestone project developed for a coding bootcamp. The Duck Hunt game is built using HTML, CSS, jQuery, and JavaScript.
+This project is the milestone 1 projet bootcamp. The Duck Hunt game is built using HTML, CSS, jQuery, and JavaScript.
 
 ## Table of Contents
 
