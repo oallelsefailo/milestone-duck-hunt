@@ -9,7 +9,8 @@ function animateDuck(
   canvas,
   backgroundImage,
   spriteSheet,
-  timeRemaining
+  timeRemaining,
+  duckSpeed
 ) {
   const totalFrames = 4;
   const scale = 3;

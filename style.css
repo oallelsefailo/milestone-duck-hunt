@@ -65,6 +65,8 @@ h1 {
   margin: 20px auto;
   padding: 10px 20px;
   font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
   background-color: #4caf50;
   color: #fff;
   border: none;
@@ -72,7 +74,72 @@ h1 {
   cursor: pointer;
 }
 
-#start-button:hover {
+#start-button:disabled,
+#start-button.disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#start-button:hover:not(:disabled):not(.disabled) {
+  background-color: #45a049;
+}
+
+/* COUNTER BUTTONS */
+
+#counter {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#counter-text {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#counter-buttons {
+  margin-top: 10px;
+}
+
+#counter-value {
+  display: inline-block;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  color: #333;
+}
+
+#counter-up,
+#counter-down {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 15px;
+  font-size: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#counter-down {
+  background-color: #ff0000;
+}
+
+
+#counter-up:disabled,
+#counter-down:disabled,
+#counter-up.disabled,
+#counter-down.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #4caf50; /* Add the same background color as the default state */
+}
+
+#counter-up:hover:not(:disabled):not(.disabled),
+#counter-down:hover:not(:disabled):not(.disabled) {
   background-color: #45a049;
 }
 
@@ -87,62 +154,13 @@ h1 {
   z-index: -1;
 }
 
-/* END MAIN STYLING FOR BODY SECITON */
-
 /* CURSOR ASSET FOR CANVAS */
 
 .canvas-cursor {
   cursor: url(assets/crosshair.png) 25 25, auto;
 }
 
-.disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-#counter {
-  margin: 20px auto;
-  text-align: center;
-}
-
-#counter-text {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-#counter-buttons {
-  margin-top: 10px;
-}
-
-#counter-value {
-  display: inline-block;
-  font-size: 16px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-}
-
-#counter-up {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#counter-down {
-  background-color: red;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#counter-up:hover,
-#counter-down:hover {
-  background-color: #45a049;
-}
+/* TIMER */
 
 #timer {
   display: block;
@@ -150,4 +168,3 @@ h1 {
   font-size: 20px;
   color: #333;
 }
-

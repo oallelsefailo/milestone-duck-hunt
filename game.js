@@ -3,6 +3,9 @@ $(document).ready(function () {
   const context = canvas.getContext("2d");
   const startButton = $("#start-button");
   const timerElement = $("#timer");
+  const counterUpButton = $("#counter-up");
+  const counterDownButton = $("#counter-down");
+  const counterValue = $("#counter-value");
 
   const backgroundImage = new Image();
   backgroundImage.src = "assets/duck-hunt-bg.png";
@@ -13,28 +16,32 @@ $(document).ready(function () {
 
   let gameInterval;
   let timeRemaining = 20;
+  let duckSpeed = 1;
+  let gameStarted = false;
 
-  // game difficulty function
-
-    let counterUpButton = $("#counter-up");
-    let counterDownButton = $("#counter-down");
-    let counterValue = $("#counter-value");
-
-    counterUpButton.on("click", function () {
+  counterUpButton.on("click", function () {
+    if (!gameStarted) {
       duckSpeed++;
       counterValue.text(duckSpeed);
-    });
+    }
+  });
 
-    counterDownButton.on("click", function () {
-      if (duckSpeed > 1) {
-        duckSpeed--;
-        counterValue.text(duckSpeed);
-      }
-    });
+  counterDownButton.on("click", function () {
+    if (!gameStarted && duckSpeed > 1) {
+      duckSpeed--;
+      counterValue.text(duckSpeed);
+    }
+  });
 
   function startGame() {
-    startButton.prop("disabled", true); // Disable the start button
-    startButton.addClass("disabled"); // Add a disabled class for styling
+    startButton.prop("disabled", true);
+    startButton.addClass("disabled");
+    gameStarted = true;
+
+    counterUpButton.prop("disabled", true);
+    counterDownButton.prop("disabled", true);
+    counterUpButton.addClass("disabled");
+    counterDownButton.addClass("disabled");
 
     gameInterval = setInterval(function () {
       timeRemaining--;
@@ -57,15 +64,29 @@ $(document).ready(function () {
     });
 
     $(spriteSheet).on("load", function () {
-      animateDuck(context, canvas, backgroundImage, spriteSheet, timeRemaining);
+      animateDuck(
+        context,
+        canvas,
+        backgroundImage,
+        spriteSheet,
+        timeRemaining,
+        duckSpeed
+      );
     });
   }
 
   function endGame() {
-    clearInterval(gameInterval); // Stop the timer interval
-    startButton.prop("disabled", false); // Enable the start button
-    startButton.removeClass("disabled"); // Remove the disabled class
-    timeRemaining = 20; // Reset the time remaining
+    clearInterval(gameInterval);
+    startButton.prop("disabled", false);
+    startButton.removeClass("disabled");
+    gameStarted = false;
+
+    counterUpButton.prop("disabled", false);
+    counterDownButton.prop("disabled", false);
+    counterUpButton.removeClass("disabled");
+    counterDownButton.removeClass("disabled");
+
+    timeRemaining = 20;
     timerElement.text("Time: " + timeRemaining);
   }
 
