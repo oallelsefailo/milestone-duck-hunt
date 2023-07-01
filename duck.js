@@ -106,7 +106,7 @@ function animateDuck(
     // Call the createDuck function to create ducks
     gameInterval = setInterval(function () {
       createDuck();
-    }, 725); // This is controlling duck spawn rate
+    }, 850); // This is controlling duck spawn rate
   
     animate();
     // Decrement time by 1 to check if the game is over
