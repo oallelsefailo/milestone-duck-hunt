@@ -40,7 +40,7 @@ img {
 body {
   background-color: #eee;
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Agdosimo', sans-serif;
 }
 
 h1 {
@@ -99,3 +99,55 @@ h1 {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+#counter {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#counter-text {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#counter-buttons {
+  margin-top: 10px;
+}
+
+#counter-value {
+  display: inline-block;
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+#counter-up {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#counter-down {
+  background-color: red;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#counter-up:hover,
+#counter-down:hover {
+  background-color: #45a049;
+}
+
+#timer {
+  display: block;
+  margin: 20px auto;
+  font-size: 20px;
+  color: #333;
+}
+

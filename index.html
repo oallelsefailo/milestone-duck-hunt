@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
     <title>Duck Hunt Game</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div id="game-container">
-        <canvas id="game-canvas" width="800" height="600"></canvas>
-        <img id="overlay-image" src="assets/main-wallpaper.png" alt="Background wallpaper for Duck Hunt">
+      <canvas id="game-canvas" width="800" height="600"></canvas>
+      <img
+        id="overlay-image"
+        src="assets/main-wallpaper.png"
+        alt="Background wallpaper for Duck Hunt"
+      />
     </div>
+
     <button id="start-button">Start Game</button>
+
+    <div id="counter">
+        <div id="counter-text">Choose Difficulty:</div>
+      <div id="counter-buttons">
+        <button id="counter-down">-</button>
+        <span id="counter-value">1</span>
+        <button id="counter-up">+</button>
+      </div>
+    </div>
+
     <span id="timer">Time: 20</span>
 
-<script src="game.js"></script>
-<script src="duck.js"></script>
-</body>
-
+    <script src="game.js"></script>
+    <script src="duck.js"></script>
+  </body>
 </html>
