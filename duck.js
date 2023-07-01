@@ -2,6 +2,7 @@ let ducks = []; // store multiple ducks
 let isBackgroundLoaded = false;
 let score = 0; // initialize score to 0
 let isGameOver = false; // track game over state
+let duckSpeed = 1; // Initial duck speed
 
 function animateDuck(
   context,
@@ -16,7 +17,6 @@ function animateDuck(
   const duckHeight = spriteSheet.height / totalFrames;
   const frameWidth = duckWidth;
   const frameHeight = duckHeight;
-  const duckSpeed = 3;
 
   let currentFrame = 0;
   let gameInterval; // Interval ID for the game loop
@@ -107,7 +107,7 @@ function animateDuck(
     gameInterval = setInterval(function () {
       createDuck();
     }, 850); // This is controlling duck spawn rate
-  
+
     animate();
     // Decrement time by 1 to check if the game is over
     setInterval(function () {
@@ -147,6 +147,7 @@ function animateDuck(
     context.font = "400 24px 'Agdosimo', sans-serif";
     context.shadowColor = "transparent";
   }
+
   // bring back the background after the canvas clears
   backgroundImage.addEventListener("load", function () {
     isBackgroundLoaded = true;

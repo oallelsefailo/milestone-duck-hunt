@@ -14,6 +14,24 @@ $(document).ready(function () {
   let gameInterval;
   let timeRemaining = 20;
 
+  // game difficulty function
+
+    let counterUpButton = $("#counter-up");
+    let counterDownButton = $("#counter-down");
+    let counterValue = $("#counter-value");
+
+    counterUpButton.on("click", function () {
+      duckSpeed++;
+      counterValue.text(duckSpeed);
+    });
+
+    counterDownButton.on("click", function () {
+      if (duckSpeed > 1) {
+        duckSpeed--;
+        counterValue.text(duckSpeed);
+      }
+    });
+
   function startGame() {
     startButton.prop("disabled", true); // Disable the start button
     startButton.addClass("disabled"); // Add a disabled class for styling
