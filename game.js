@@ -18,7 +18,7 @@ $(document).ready(function () {
   let timeRemaining = 20;
   let duckSpeed = 1;
   let gameStarted = false;
-
+  // Sets the game "difficulty" and defines the duckSpeed in the global variable
   counterUpButton.on("click", function () {
     if (!gameStarted) {
       duckSpeed++;

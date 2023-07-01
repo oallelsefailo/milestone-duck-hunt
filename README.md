@@ -31,15 +31,20 @@ In the Duck Hunt game, players take on the role of a hunter and attempt to shoot
 - Animated ducks flying across the screen.
 - Player-controlled crosshair for aiming.
 - Shooting mechanism to eliminate ducks.
+- Adjust difficulty of game.
 - Timer to set a time limit for each game session.
 
 ## Challenges Faced
 
 During the development of the Duck Hunt game, several challenges were encountered. Here are the major challenges faced:
 
-1. Animating the Ducks: Initially, an attempt was made to use a GIF with a canvas to animate the ducks. However, it was discovered that this approach was not feasible and caused issues.
+1. Animating the Ducks: Initially, an attempt was made to use a GIF with a canvas to animate the ducks. However, I discovered that this approach was not possible and caused issues.
 
 2. Implementing a "Game Over" Feature: Another challenge involved adding a time limit to the game and displaying the score and "Game Over" text after the time limit was reached. However, implementing this feature while keeping the background image and scoreboard intact posed difficulties.
+
+3. Removing the ducks from the array when clicked on to simulate being "shot down" and added as a score.
+
+4. Creating a difficulty counter that displayed an incrementing and decrementing button, allowing the player to adjust the speed of the ducks. This speed value was then passed into the `animateDuck` function to determine the movement speed of the ducks. 
 
 ## Code Solution
 
@@ -68,6 +73,35 @@ To address the challenge of implementing the "Game Over" feature while preservin
 2. Call the `gameOver()` function: The `gameOver()` function was called when the timer reached 0, indicating the end of the game. It provided a seamless transition from the gameplay to the game over screen, allowing the player to see their score and the "Game Over" message without losing the background image and scoreboard.
 
 The implementation of the `gameOver()` function addressed the challenge of maintaining the game's visual elements while incorporating a time limit and displaying the game's outcome.
+
+### Removing Ducks From Array
+
+To simulate the ducks being "shot down" when clicked on and update the score, a new event listener was implemented. This event listener loops over the ducks array and checks if the mouse coordinates intersect with any duck's position on the canvas. If a duck is clicked, it is removed from the array, and the score is incremented.
+
+The if statement within the event listener contains the following conditions:
+
+`mouseX >= duck.x`: Ensures that the mouse is to the right of or on the same vertical line as the left edge of the duck.
+`mouseX <= duck.x + frameWidth * scale`: Ensures that the mouse is to the left of or on the same vertical line as the right edge of the duck.
+mouseY does the same respectively but opposite.
+
+If all these conditions are met, it means that the mouse is within the bounds of the duck's position on the canvas. In that case, the following actions are performed:
+
+1. An audio effect is played to simulate the sound of shooting.
+2. The duck is removed from the ducks array using `splice(i, 1)`, where `i` is the current index of the duck in the array.
+3. The loop variable `i` is decremented to account for the removed duck and prevent skipping the next duck in the array.
+4. The score is incremented by 1 using `score++`.
+
+### Difficulty Counter
+
+1. To solve this, I created a counter value that checked if the game had started or not and updated the `duckSpeed` global variable. 
+```javascript
+counterDownButton.on("click", function () {
+  if (!gameStarted && duckSpeed > 1) {
+    duckSpeed--;
+    counterValue.text(duckSpeed);
+  }
+});
+```
 
 ## Assets and Sources
 
