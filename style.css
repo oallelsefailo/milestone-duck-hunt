@@ -135,7 +135,7 @@ h1 {
 #counter-down.disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background-color: #4caf50; /* Add the same background color as the default state */
+  background-color: #4caf50;
 }
 
 #counter-up:hover:not(:disabled):not(.disabled),
