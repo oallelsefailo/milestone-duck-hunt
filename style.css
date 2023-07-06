@@ -37,6 +37,7 @@ img {
 /* END CSS RESET */
 
 /* STYLING MAIN BODY SECTION */
+
 body {
   background-color: #eee;
   text-align: center;
@@ -73,6 +74,8 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
 }
+
+/* DISABLE BUTTON ON START */
 
 #start-button:disabled,
 #start-button.disabled:hover {
@@ -128,6 +131,7 @@ h1 {
   background-color: #ff0000;
 }
 
+/* DISABLE COUNTER ON START */
 
 #counter-up:disabled,
 #counter-down:disabled,

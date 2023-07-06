@@ -149,7 +149,7 @@ function animateDuck(
     context.shadowColor = "transparent";
   }
 
-  // bring back the background after the canvas clears
+  // Bring back the background after the canvas clears
   backgroundImage.addEventListener("load", function () {
     isBackgroundLoaded = true;
   });
