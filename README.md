@@ -14,7 +14,7 @@ This project is the milestone 1 projet bootcamp. The Duck Hunt game is built usi
 
 ## Project Overview
 
-The Duck Hunt game is a classic shooting game where players aim to shoot ducks flying across the screen. The game provides an interactive and engaging experience for users, featuring animated ducks and a scoring system.
+The Duck Hunt game is a classic shooting game where players aim to shoot ducks flying across the screen. The game implements a difficulty setting and a scoring function.
 
 ## Installation
 
@@ -36,7 +36,7 @@ In the Duck Hunt game, players take on the role of a hunter and attempt to shoot
 
 ## Challenges Faced
 
-During the development of the Duck Hunt game, several challenges were encountered. Here are the major challenges faced:
+While creating the Duck Hunt game, several challenges were encountered. Here are the major challenges faced:
 
 1. Animating the Ducks: Initially, an attempt was made to use a GIF with a canvas to animate the ducks. However, I discovered that this approach was not possible and caused issues.
 
@@ -48,7 +48,7 @@ During the development of the Duck Hunt game, several challenges were encountere
 
 ## Code Solution
 
-To overcome the challenges faced during development, the following solutions were implemented:
+To overcome the problems faced during development, the following solutions were implemented:
 
 ### Animating the Ducks
 
@@ -72,7 +72,7 @@ To address the challenge of implementing the "Game Over" feature while preservin
 
 2. Call the `gameOver()` function: The `gameOver()` function was called when the timer reached 0, indicating the end of the game. It provided a seamless transition from the gameplay to the game over screen, allowing the player to see their score and the "Game Over" message without losing the background image and scoreboard.
 
-The implementation of the `gameOver()` function addressed the challenge of maintaining the game's visual elements while incorporating a time limit and displaying the game's outcome.
+The implementation of the `gameOver()` function addressed the challenge of maintaining the game's visual elements while still keeping a time limit and displaying the game's outcome.
 
 ### Removing Ducks From Array
 
