@@ -1,7 +1,7 @@
-let ducks = []; // store multiple ducks
+let ducks = []; // Store multiple ducks
 let isBackgroundLoaded = false;
-let score = 0; // initialize score to 0
-let isGameOver = false; // track game over state
+let score = 0; // Set score to 0
+let isGameOver = false; // Track game over state
 let duckSpeed = 1; // Initial duck speed
 
 function animateDuck(

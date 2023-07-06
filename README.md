@@ -20,8 +20,8 @@ The Duck Hunt game is a classic shooting game where players aim to shoot ducks f
 
 To run the Duck Hunt game locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/oallelsefailo/duck-hunt-game.git`
-2. Navigate to the project directory: `cd duck-hunt-game`
+1. Clone the repository: `git clone https://github.com/oallelsefailo//milestone-duck-hunt.git`
+2. Navigate to the project directory: `cd milestone-duck-hunt`
 3. Open the `index.html` file in your preferred web browser.
 
 ## Gameplay
