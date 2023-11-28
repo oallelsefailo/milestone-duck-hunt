@@ -1,0 +1,19 @@
+@mixin button-styles {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@mixin disabled-styles {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@mixin hover-styles {
+  &:hover:not(:disabled):not(.disabled) {
+    background-color: #45a049;
+  }
+}

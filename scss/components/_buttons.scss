@@ -1,0 +1,15 @@
+#start-button {
+  @include button-styles;
+  background-color: $primary-color; 
+  color: #fff;
+  border: none;
+  border-radius: $button-border-radius;
+  cursor: pointer;
+
+  &:disabled,
+  &.disabled:hover {
+    @include disabled-styles;
+  }
+
+  @include hover-styles;
+}
