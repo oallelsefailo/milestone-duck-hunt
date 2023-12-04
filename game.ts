@@ -1,17 +1,19 @@
 $(document).ready(function () {
-  const canvas = $("#game-canvas")[0];
-  const context = canvas.getContext("2d");
-  const startButton = $("#start-button");
+  const canvas: HTMLCanvasElement = $("#game-canvas")[0] as HTMLCanvasElement;
+  const context: CanvasRenderingContext2D | null = canvas.getContext("2d");
+  const startButton: JQuery<HTMLElement> = $("#start-button");
 
-  const backgroundImage = new Image();
+  const backgroundImage: HTMLImageElement = new Image();
   backgroundImage.src = "assets/duck-hunt-bg.png";
 
   $(backgroundImage).on("load", function () {
-    context.drawImage(backgroundImage, 0, 0);
+    if (context) {
+      context.drawImage(backgroundImage, 0, 0);
+    }
   });
 
   startButton.on("click", function () {
-    const spriteSheet = new Image();
+    const spriteSheet: HTMLImageElement = new Image();
     spriteSheet.src = "assets/duck-sprite-sheet.png";
 
     $("#game-canvas").on("mouseenter", function () {
@@ -23,7 +25,9 @@ $(document).ready(function () {
     });
 
     $(spriteSheet).on("load", function () {
-      animateDuck(context, canvas, backgroundImage, spriteSheet);
+      if (context) {
+        animateDuck(context, canvas, backgroundImage, spriteSheet);
+      }
     });
   });
 });

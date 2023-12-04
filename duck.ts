@@ -1,25 +1,35 @@
-function animateDuck(context, canvas, backgroundImage, spriteSheet) {
-  const totalFrames = 4;
-  const scale = 3;
-  const duckWidth = spriteSheet.width;
-  const duckHeight = spriteSheet.height / totalFrames;
-  const frameWidth = duckWidth;
-  const frameHeight = duckHeight;
-  const duckSpeed = 3;
-  const animationSpeed = 15;
+interface Duck {
+  x: number;
+  y: number;
+}
 
-  let ducks = []; // store multiple ducks
-  let currentFrame = 0;
+function animateDuck(
+  context: CanvasRenderingContext2D,
+  canvas: HTMLCanvasElement,
+  backgroundImage: HTMLImageElement,
+  spriteSheet: HTMLImageElement
+) {
+  const totalFrames: number = 4;
+  const scale: number = 3;
+  const duckWidth: number = spriteSheet.width;
+  const duckHeight: number = spriteSheet.height / totalFrames;
+  const frameWidth: number = duckWidth;
+  const frameHeight: number = duckHeight;
+  const duckSpeed: number = 3;
+  const animationSpeed: number = 15;
+
+  let ducks: Duck[] = [];
+  let currentFrame: number = 0;
 
   function createDuck() {
-    const duck = {
+    const duck: Duck = {
       x: canvas.width,
-      y: Math.random() * (canvas.height * 0.5 - frameHeight * scale), // should randomize the ducks position, but only to the top 50% of the canvas
+      y: Math.random() * (canvas.height * 0.5 - frameHeight * scale),
     };
     ducks.push(duck);
   }
 
-  function animateDuck() {
+  function animateDuckFrame() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(backgroundImage, 0, 0);
 
@@ -44,7 +54,6 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
       duck.x -= duckSpeed;
 
       if (duck.x + frameWidth * scale < 0) {
-        // Duck went off the screen, remove it from the array
         ducks.splice(i, 1);
         i--;
       }
@@ -52,7 +61,6 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
 
     currentFrame = (currentFrame + 1) % (totalFrames * totalFrames);
 
-    // Click event to remove duck if clicked on
     canvas.addEventListener("click", function (event) {
       const mouseX = event.clientX - canvas.offsetLeft;
       const mouseY = event.clientY - canvas.offsetTop;
@@ -68,20 +76,18 @@ function animateDuck(context, canvas, backgroundImage, spriteSheet) {
         ) {
           const audio = new Audio("assets/gun_fire.wav");
           audio.play();
-          // Duck clicked, remove it from the array
           ducks.splice(i, 1);
           i--;
         }
       }
     });
 
-    // Randomly create a new duck at a random interval
     if (Math.random() < 0.01) {
       createDuck();
     }
-    requestAnimationFrame(animateDuck, animationSpeed);
+    requestAnimationFrame(animateDuckFrame);
   }
 
   createDuck();
-  animateDuck();
+  animateDuckFrame();
 }
